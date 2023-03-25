@@ -1,39 +1,115 @@
 import { useEffect, useState } from "react";
+import SongsDataBaseService from './SongsDataBaseService';
+import { RootObject } from './trackType';
+
+import SongCard from "./songCard";
 
 function SongsContainer() {
-    const [beat, setBeat] = useState<HTMLAudioElement>();
+    const [songsData, setSongsData] = useState<RootObject>({} as RootObject);
+    const [featuredSongsData, setFeaturedSongsData] = useState<RootObject>({} as RootObject);
 
-    const fetchChratTrackData = () => {
-        const options = {
-            method: 'GET',
-            headers: {'X-RapidAPI-Key': '1c31c7e468mshadcdb940674038ep115cdbjsn3948d878f5e5'}
-          };
-          
-          fetch('https://shazam.p.rapidapi.com/charts/track', options)
-            .then(response => response.json())
-            .then(response => {console.log(response.tracks[0].hub.actions[1].uri)
-                setBeat(new Audio(response.tracks[0].hub.actions[1].uri));
+    const fetchSongsData = (startingValue: string = '0') => {
+        SongsDataBaseService.getAllSongsData(startingValue).then(response => response.json())
+            .then(response => {
+                console.log(response);
+                setSongsData(response);
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err)
+            });
     }
 
-    const playSong = () => {
-       beat?.play();
+    const fetchFeaturedSongsData = (startingValue: string = '5') => {
+        SongsDataBaseService.getAllSongsData(startingValue).then(response => response.json())
+            .then(response => {
+                console.log(response);
+                setFeaturedSongsData(response);
+            })
+            .catch(err => {
+                console.error(err)
+            });
     }
-    const pauseSong = () => {
-        beat?.pause();
-    }
-
+ 
     useEffect(() => {
-        fetchChratTrackData()
+        fetchSongsData();
+        fetchFeaturedSongsData();
     }, [])
 
     return (<>
-        <div className="BottomSideTopComponentHomePage">
-        <button onClick={playSong}>Play Song</button>
-        <button onClick={pauseSong}>Pause Song</button>
+        <div className="container-fluid">
+        <div className="songByListContainer">
+        <div className="headingBlock d-flex">
+                <p className="headingSongsContainer">Released This Week</p>
+                <div className="hrHeading">
+                    <hr className='shivam' />
+                </div>
+            </div>
+
+            {songsData.tracks ? <>
+                <div className="container-fluid">
+                    <div className="songCardViewRow">
+                        {
+                            songsData.tracks.map((value, index) => {
+                                return (<div key={index}>
+                                    <div className="songCardView">
+                                        <SongCard track={value} />
+                                    </div>
+                                </div>)
+                            })
+                        }
+                    </div>
+                </div>
+            </> : <></>}
+            </div>
+            <div className="headingBlock d-flex">
+                <p className="headingSongsContainer">Featured Playlist</p>
+                <div className="hrHeading">
+                    <hr className='shivam' />
+                </div>
+            </div>
+
+            {featuredSongsData.tracks ? <>
+                <div className="container-fluid">
+                    <div className="songCardViewRow">
+                        {
+                            featuredSongsData.tracks.map((value, index) => {
+                                return (<div key={index}>
+                                    <div className="songCardView">
+                                        <SongCard track={value} />
+                                    </div>
+                                </div>)
+                            })
+                        }
+                    </div>
+                </div>
+            </> : <></>}
         </div>
     </>)
 }
-
 export default SongsContainer;
+
+
+// import { useEffect, useState } from "react";
+
+// function SongsContainer() {
+//     const [beat, setBeat] = useState<HTMLAudioElement>();
+
+//     const playSong = () => {
+//         // console.log(response.tracks[0].hub.actions[1].uri)
+//         // setBeat(new Audio(response.tracks[0].hub.actions[1].uri));
+
+//         beat?.play();
+//     }
+//     const pauseSong = () => {
+//         beat?.pause();
+//     }
+
+//     return (<>
+//         <div className="BottomSideTopComponentHomePage">
+//             <button onClick={playSong}>Play Song</button>
+//             <button onClick={pauseSong}>Pause Song</button>
+//         </div>
+//     </>)
+// }
+
+// export default SongsContainer;
