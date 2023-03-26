@@ -2,7 +2,6 @@ import SongsContainer from './components/SongsContainer';
 
 function Search() {
     function updateFunction() {
-        console.log('done home');
     }
 
     return (<>

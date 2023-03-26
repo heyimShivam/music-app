@@ -12,6 +12,7 @@ import PlayingSongContainer from "./components/playingSongContainer";
 import SongsDataBaseService from "./components/SongsDataBaseService";
 
 interface playingSongDetailsInterface {
+    key: string;
     image: string;
     songTitle: string;
     songAuthorName: string;
@@ -21,6 +22,8 @@ interface playingSongDetailsInterface {
 function Main() {
 
     const [playingSongDetais, setPlayingSongDetais] = useState<playingSongDetailsInterface>(SongsDataBaseService.playingSongDetail);
+
+    SongsDataBaseService.getFavSongsfromLocalStorage();
 
     function updateFunction() {
         setPlayingSongDetais(SongsDataBaseService.playingSongDetail);

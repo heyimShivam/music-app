@@ -231,11 +231,12 @@
 
 .playing-music-image {
     position: absolute;
-    top: -50px;
+    top: -60px;
     left: 30px;
-    height: 120px;
-    width: 120px;
+    height: 140px;
+    width: 140px;
     object-fit: cover;
+    border: 7px solid royalblue;
     border-radius: 20px;
 }
 
