@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import SongsDataBaseService from './SongsDataBaseService';
-import { RootObject } from './trackType';
+import { RootObject, Track } from './trackType';
 
 import SongCard from "./songCard";
 
-function SongsContainer() {
+interface updateFunction {
+    updateFunction: () => void
+}
+
+function SongsContainer(props: updateFunction) {
+    function updateFunctionSongContainer () {
+        props.updateFunction();
+    }
+
     const [songsData, setSongsData] = useState<RootObject>({} as RootObject);
     const [featuredSongsData, setFeaturedSongsData] = useState<RootObject>({} as RootObject);
 
@@ -52,7 +60,7 @@ function SongsContainer() {
                             songsData.tracks.map((value, index) => {
                                 return (<div key={index}>
                                     <div className="songCardView">
-                                        <SongCard track={value} />
+                                        <SongCard track={value} updateFunction={updateFunctionSongContainer}/>
                                     </div>
                                 </div>)
                             })
@@ -75,7 +83,7 @@ function SongsContainer() {
                             featuredSongsData.tracks.map((value, index) => {
                                 return (<div key={index}>
                                     <div className="songCardView">
-                                        <SongCard track={value} />
+                                        <SongCard track={value} updateFunction={updateFunctionSongContainer}/>
                                     </div>
                                 </div>)
                             })
@@ -83,6 +91,29 @@ function SongsContainer() {
                     </div>
                 </div>
             </> : <></>}
+            <div className="headingBlock d-flex">
+                <p className="headingSongsContainer">Featured Playlist</p>
+                <div className="hrHeading">
+                    <hr className='shivam' />
+                </div>
+            </div>
+
+            {featuredSongsData.tracks ? <>
+                <div className="container-fluid">
+                    <div className="songCardViewRow">
+                        {
+                            featuredSongsData.tracks.map((value, index) => {
+                                return (<div key={index}>
+                                    <div className="songCardView">
+                                        <SongCard track={value} updateFunction={updateFunctionSongContainer}/>
+                                    </div>
+                                </div>)
+                            })
+                        }
+                    </div>
+                </div>
+            </> : <></>}
+            
         </div>
     </>)
 }
