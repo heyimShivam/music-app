@@ -1,19 +1,93 @@
-import SongsContainer from './components/SongsContainer';
+import { useEffect, useState } from "react";
+import SongsDataBaseService from "./components/SongsDataBaseService";
+import { SearchObjectType } from "./searchType";
 
-function Search() {
-    function updateFunction() {
+interface updateFunction {
+    updateFunction: () => void
+}
+
+function Search(props: updateFunction) {
+    const [loader, setLoader] = useState(false);
+    const [searchAbleSong, setSearchAbleSong] = useState('');
+    const [isSearching, setIsSearching] = useState(true);
+    const [searchResult, setSearchResult] = useState({} as SearchObjectType);
+
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchAbleSong(event.target.value);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            setLoader(true);
+            SongsDataBaseService.searchSongAndGetData(searchAbleSong)
+                .then(response => response.json())
+                .then(response => {
+                    setSearchResult(response);
+
+                    console.log('search results');
+                    console.log(searchAbleSong);
+                    console.log(searchResult);
+                    setIsSearching(false);
+                    setLoader(false);
+                })
+                .catch(err => console.error(err));
+        }
+    };
+
+    function updateCurrentPlayingSongDetails(value: number = 0): void {
+        SongsDataBaseService.playingSongDetail = {
+            key: String(searchResult.tracks.hits[value].track.hub.actions[0].id),
+            image: (searchResult.tracks.hits[value].track.images.coverart),
+            songTitle: searchResult.tracks.hits[value].track.title,
+            songAuthorName: searchResult.tracks.hits[value].track.subtitle,
+            address: String(searchResult.tracks.hits[value].track.hub.actions[1].uri)
+        }
+
+        props.updateFunction();
     }
 
     return (<>
         <div className="container">
-            <div className="searchInputWrapper">    
-                <input className="searchInput" type="text" placeholder='Search song here....'>
+            <div className="searchInputWrapper">
+                <input className="searchInput" value={searchAbleSong} onChange={handleChange} type="text" placeholder='Search song here....' onKeyDown={handleKeyDown}>
                 </input>
                 <i className="searchInputIcon bi bi-search"></i>
             </div>
         </div>
         <div className="container-fluid search-container">
-           <SongsContainer updateFunction={updateFunction}/>
+            {loader ? <><div className="loader"></div></> : <></>}
+            {isSearching ?
+                <></> :
+                <>
+                    <div className="songByListContainer">
+                        <div className="headingBlock d-flex">
+                            <p className="headingSongsContainer">Result of the Search</p>
+                            <div className="hrHeading">
+                                <hr className='shivam' />
+                            </div>
+                        </div>
+                    </div>
+
+                    {searchResult ?<>
+                        {
+                            searchResult.tracks.hits.map((value, index) => {
+                                return (<div key={index}>
+                                    <div className="box">
+                                        <div className="songCard favSongsCoard songCardClickEvent" onClick={() => { updateCurrentPlayingSongDetails(index) }}>
+                                            {value.track ? <>
+                                                <img src={value.track.images.coverart} className="background-image-song-card" alt={value.track.title} />
+                                                <div className="background-image-song-card-two"></div>
+                                                <p>{value.track.title}</p>
+                                            </> : <></>}
+                                        </div>
+                                    </div>
+                                </div>)
+                            })
+                        }
+                        </>
+                        : <></>}
+                </>}
         </div>
     </>)
 }

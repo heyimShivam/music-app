@@ -1,6 +1,18 @@
 import { RootObjectFav } from "../favType";
 
 const SongsDataBaseService = {
+    searchSongAndGetData: async (songName: string) => {
+        const options = {
+            method: 'GET',
+            headers: {
+            //   'X-RapidAPI-Key': '5eaaa179d5msh71212fb680dc314p1c433cjsn890c126ec4e1',
+            //   'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
+            }
+          };
+          
+          let response = await fetch('https://shazam.p.rapidapi.com/search?term='+ songName +'&locale=en-US&offset=0&limit=5', options);
+          return response;
+    },
     favouritiesSongsKey: [],
     favouritiesSongsAllData: [],
     saveFavSongToLocalstorage: () => {
@@ -17,8 +29,8 @@ const SongsDataBaseService = {
             const options = {
                 method: 'GET',
                 headers: {
-                    'X-RapidAPI-Key': '2197bb7d1emsh9028ee7d9d54b39p1e7c8ejsn74ebbd152abe',
-                    'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
+                    // 'X-RapidAPI-Key': '5eaaa179d5msh71212fb680dc314p1c433cjsn890c126ec4e1',
+                    // 'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
                 }
             };
 
@@ -46,8 +58,8 @@ const SongsDataBaseService = {
         const options = {
             method: 'GET',
             headers: {
-                'X-RapidAPI-Key': '2197bb7d1emsh9028ee7d9d54b39p1e7c8ejsn74ebbd152abe',
-                'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
+                // 'X-RapidAPI-Key': '5eaaa179d5msh71212fb680dc314p1c433cjsn890c126ec4e1',
+                // 'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
             }
         };
 

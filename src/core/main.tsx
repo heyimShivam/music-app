@@ -41,8 +41,8 @@ function Main() {
 
                         <Routes>
                             <Route path="/" element={<Home updateFunction={updateFunction} />} ></Route>
-                            <Route path="search" element={<Search />} ></Route>
-                            <Route path="favourities" element={<Favourities />} ></Route>
+                            <Route path="search" element={<Search updateFunction={updateFunction}/>} ></Route>
+                            <Route path="favourities" element={<Favourities updateFunction={updateFunction}/>} ></Route>
                             <Route path="playlists" element={<Playlists />} ></Route>
                         </Routes>
                         {/* <Route path="*" element={<NoPage />} /> */}
