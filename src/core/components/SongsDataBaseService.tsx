@@ -1,9 +1,11 @@
 import { RootObjectFav } from "../favType";
 
+const shazamApiKey = '5eaaa179d5msh71212fb680dc314p1c433cjsn890c126ec4e1';
+
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': '5eaaa179d5msh71212fb680dc314p1c433cjsn890c126ec4e1',
+        'X-RapidAPI-Key': shazamApiKey,
         'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
     }
 };
