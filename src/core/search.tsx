@@ -24,10 +24,6 @@ function Search(props: updateFunction) {
                 .then(response => response.json())
                 .then(response => {
                     setSearchResult(response);
-
-                    console.log('search results');
-                    console.log(searchAbleSong);
-                    console.log(searchResult);
                     setIsSearching(false);
                     setLoader(false);
                 })

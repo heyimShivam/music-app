@@ -26,6 +26,7 @@ function Main() {
     SongsDataBaseService.getFavSongsfromLocalStorage();
 
     function updateFunction() {
+        console.log('called update functon')
         setPlayingSongDetais(SongsDataBaseService.playingSongDetail);
     }
 

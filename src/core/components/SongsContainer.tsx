@@ -116,29 +116,3 @@ function SongsContainer(props: updateFunction) {
     </>)
 }
 export default SongsContainer;
-
-
-// import { useEffect, useState } from "react";
-
-// function SongsContainer() {
-//     const [beat, setBeat] = useState<HTMLAudioElement>();
-
-//     const playSong = () => {
-//         // console.log(response.tracks[0].hub.actions[1].uri)
-//         // setBeat(new Audio(response.tracks[0].hub.actions[1].uri));
-
-//         beat?.play();
-//     }
-//     const pauseSong = () => {
-//         beat?.pause();
-//     }
-
-//     return (<>
-//         <div className="BottomSideTopComponentHomePage">
-//             <button onClick={playSong}>Play Song</button>
-//             <button onClick={pauseSong}>Pause Song</button>
-//         </div>
-//     </>)
-// }
-
-// export default SongsContainer;

@@ -13,7 +13,6 @@ function Favourities(props: updateFunction) {
 
     useEffect(() => {
         SongsDataBaseService.getFavSongsDataFromBackend().then((res) => {
-            console.log('called how many times');
             setFavouritiesSongsAllData(res as RootObjectFav[]);
         });
     }, []);
