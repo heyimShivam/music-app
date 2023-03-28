@@ -9,11 +9,13 @@ interface updateFunction {
 }
 
 function Favourities(props: updateFunction) {
+    const [loader, setLoader] = useState(true);
     let [favouritiesSongsAllData, setFavouritiesSongsAllData] = useState<RootObjectFav[]>([]);
 
     useEffect(() => {
         SongsDataBaseService.getFavSongsDataFromBackend().then((res) => {
             setFavouritiesSongsAllData(res as RootObjectFav[]);
+            setLoader(false);
         });
     }, []);
 
@@ -31,6 +33,7 @@ function Favourities(props: updateFunction) {
 
     return (<>
         <div className="container">
+            {loader ? <><div className="loader"></div></> : <></>}
             {favouritiesSongsAllData ? <>
                 {
                     favouritiesSongsAllData.map((value, index) => {

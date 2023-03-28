@@ -89,6 +89,10 @@
     color: white;
 }
 
+.active {
+    font-size: 30px;
+}
+
 .navbarContainer ul li:hover {
     font-size: 30px;
     transition: 0.3s;
@@ -376,4 +380,9 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+.loader {
+    margin: auto;
+    margin-top: 50px;
 }

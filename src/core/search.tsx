@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import SongsDataBaseService from "./components/SongsDataBaseService";
 import { SearchObjectType } from "./searchType";
 
