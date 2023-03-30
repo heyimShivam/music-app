@@ -41,7 +41,7 @@ function SongsContainer(props: updateFunction) {
         fetchFeaturedSongsData();
     }, [])
 
-    return (<>
+    return (<div className="bottom-padding-to-div">
         <div className="container-fluid">
             <div className="songByListContainer">
                 <div className="headingBlock d-flex">
@@ -113,6 +113,6 @@ function SongsContainer(props: updateFunction) {
             </> : <></>}
 
         </div>
-    </>)
+    </div>)
 }
 export default SongsContainer;

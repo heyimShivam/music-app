@@ -20,6 +20,7 @@ function Search(props: updateFunction) {
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
             setLoader(true);
+
             SongsDataBaseService.searchSongAndGetData(searchAbleSong)
                 .then(response => response.json())
                 .then(response => {
@@ -65,7 +66,7 @@ function Search(props: updateFunction) {
                         </div>
                     </div>
 
-                    {searchResult ?<>
+                    {searchResult.tracks ? <>
                         {
                             searchResult.tracks.hits.map((value, index) => {
                                 return (<div key={index}>
@@ -81,8 +82,14 @@ function Search(props: updateFunction) {
                                 </div>)
                             })
                         }
-                        </>
-                        : <></>}
+                    </>
+                        : <>
+                            <div className="songByListContainer">
+                                <div className="headingBlock d-flex">
+                                    <p className="headingSongsContainer headingSongsContainerchanges">( No Track Found. Please Try Again After Some Time May be network issue. )</p>
+                                </div>
+                            </div>
+                        </>}
                 </>}
         </div>
     </>)

@@ -166,6 +166,10 @@
     width: 15%;
     padding-left: 33px;
 }
+.headingSongsContainerchanges {
+    width: 100%;
+    color: red;
+}
 
 .hrHeading {
     width: 85%;
@@ -233,10 +237,13 @@
     width: 60%;
 }
 
-.playing-music-image {
-    position: absolute;
+.image-and-text-div-player {
+    position: relative;
     top: -60px;
     left: 30px;
+}
+
+.playing-music-image {
     height: 140px;
     width: 140px;
     object-fit: cover;
@@ -314,13 +321,38 @@
 }
 
 .text-container-music-player {
-    position: absolute;
-    left: 25%;
-    top: 60%;
+    position: relative;
+    left: 14%;
+    top: -62px;
     color: white;
-    transform: translate(-50%, -50%);
 }
 
+.bottom-padding-to-div {
+    padding-bottom: 160px;
+}
+
+.create-new-playlist {
+    color: royalblue;
+    font-size: 25px;
+    font-weight: 400;
+}
+
+.create-new-playlist-input {
+  border: 0px;
+  color: gray;
+  border-bottom: 1px solid royalblue;
+  margin-bottom: 30px;
+  margin-top: 8px;
+}
+.playlist {
+    color: royalblue;
+}
+.create-new-playlist-input::placeholder {
+    color: gray;
+  }
+.create-new-playlist-input:focus {
+    outline: none;
+}
 /* 
 .progress {
 	width: 100%;
@@ -361,6 +393,10 @@
     animation: spin 2s linear infinite;
 }
 
+.song-card-name {
+    text-align: center;
+}
+
 /* Safari */
 @-webkit-keyframes spin {
     0% {
@@ -385,4 +421,8 @@
 .loader {
     margin: auto;
     margin-top: 50px;
+}
+
+.songCardViewUpdatedWidth {
+    width: 180px;
 }

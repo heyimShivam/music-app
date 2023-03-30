@@ -22,7 +22,7 @@ function SongCard(props: PropsTrack) {
     <div className="songCard songCardClickEvent" onClick={updateCurrentPlayingSongDetails}>
       <img src={props.track.images.coverarthq} className="background-image-song-card" alt={props.track.title} />
       <div className="background-image-song-card-two"></div>
-      <p>{props.track.title}</p>
+      <p className="song-card-name">{props.track.title}</p>
     </div>)
 }
 

@@ -38,12 +38,12 @@ function Favourities(props: updateFunction) {
                 {
                     favouritiesSongsAllData.map((value, index) => {
                         return (<div key={index}>
-                            <div className="box">
-                                <div className="songCard favSongsCoard songCardClickEvent" onClick={() => { updateCurrentPlayingSongDetails(index) }}>
+                            <div className="box ">
+                                <div className="songCard songCardViewUpdatedWidth favSongsCoard songCardClickEvent" onClick={() => { updateCurrentPlayingSongDetails(index) }}>
                                     {value.data ? <>
                                         <img src={(value.data[0].attributes.artwork.url).replace('{w}x{h}', '400x400')} className="background-image-song-card" alt={value.data[0].attributes.albumName} />
                                         <div className="background-image-song-card-two"></div>
-                                        <p>{value.data[0].attributes.albumName}</p>
+                                        <p className="song-card-name">{value.data[0].attributes.albumName}</p>
                                     </> : <></>}
                                 </div>
                             </div>

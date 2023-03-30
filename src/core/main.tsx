@@ -26,7 +26,6 @@ function Main() {
     SongsDataBaseService.getFavSongsfromLocalStorage();
 
     function updateFunction() {
-        console.log('called update functon')
         setPlayingSongDetais(SongsDataBaseService.playingSongDetail);
     }
 
@@ -44,7 +43,7 @@ function Main() {
                             <Route path="/" element={<Home updateFunction={updateFunction} />} ></Route>
                             <Route path="search" element={<Search updateFunction={updateFunction}/>} ></Route>
                             <Route path="favourities" element={<Favourities updateFunction={updateFunction}/>} ></Route>
-                            <Route path="playlists" element={<Playlists />} ></Route>
+                            <Route path="playlists" element={<Playlists updateFunction={updateFunction}/>} ></Route>
                         </Routes>
                         {/* <Route path="*" element={<NoPage />} /> */}
                     </div>
