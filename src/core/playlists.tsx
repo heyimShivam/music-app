@@ -43,7 +43,7 @@ function Playlists(props: updateFunction) {
                     <>
                         <div className="loader"></div>
                     </> :
-                    <div className="container">
+                    <div className="container-fluid">
                         {playListData ? <>
                             {
                                 playListData.map((value, mainIndex) => {

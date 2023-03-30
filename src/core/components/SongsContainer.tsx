@@ -9,6 +9,9 @@ interface updateFunction {
 }
 
 function SongsContainer(props: updateFunction) {
+    const [loaderForRelease, setLoaderForRelease] = useState(true);
+    const [loaderForFeatured, setLoaderForFeatured] = useState(true);
+
     function updateFunctionSongContainer() {
         props.updateFunction();
     }
@@ -20,6 +23,7 @@ function SongsContainer(props: updateFunction) {
         SongsDataBaseService.getAllSongsData(startingValue).then(response => response.json())
             .then(response => {
                 setSongsData(response);
+                setLoaderForRelease(false);
             })
             .catch(err => {
                 console.error(err)
@@ -30,6 +34,7 @@ function SongsContainer(props: updateFunction) {
         SongsDataBaseService.getAllSongsData(startingValue).then(response => response.json())
             .then(response => {
                 setFeaturedSongsData(response);
+                setLoaderForFeatured(false);
             })
             .catch(err => {
                 console.error(err)
@@ -50,7 +55,7 @@ function SongsContainer(props: updateFunction) {
                         <hr className='shivam' />
                     </div>
                 </div>
-
+                {loaderForRelease ? <div className="loader"></div> : <></>}
                 {songsData.tracks ? <>
                     <div className="container-fluid">
                         <div className="songCardViewRow">
@@ -73,7 +78,7 @@ function SongsContainer(props: updateFunction) {
                     <hr className='shivam' />
                 </div>
             </div>
-
+            {loaderForFeatured ? <div className="loader"></div> : <></>}
             {featuredSongsData.tracks ? <>
                 <div className="container-fluid">
                     <div className="songCardViewRow">
@@ -95,7 +100,7 @@ function SongsContainer(props: updateFunction) {
                     <hr className='shivam' />
                 </div>
             </div>
-
+            {loaderForFeatured ? <div className="loader"></div> : <></>}
             {featuredSongsData.tracks ? <>
                 <div className="container-fluid">
                     <div className="songCardViewRow">

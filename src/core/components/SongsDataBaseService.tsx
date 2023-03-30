@@ -2,11 +2,11 @@ import { RootObjectFav } from "../favType";
 import { PlayListData } from "../playlists";
 import { AllPlaylist } from "./playingSongContainer";
 
-const shazamApiKey = 'b9b1b0ccd9msh4471e634f649ed7p194a1ejsn2f2bb4ea2585';
+const shazamApiKey = 'b59b9311e8msh1d91f1d554612d1p1a25afjsn7c22fdbab884';
 const options = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': shazamApiKey,
+        // 'X-RapidAPI-Key': shazamApiKey,
         'X-RapidAPI-Host': 'shazam.p.rapidapi.com'
     }
 };

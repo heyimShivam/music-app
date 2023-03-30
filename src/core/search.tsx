@@ -71,11 +71,11 @@ function Search(props: updateFunction) {
                             searchResult.tracks.hits.map((value, index) => {
                                 return (<div key={index}>
                                     <div className="box">
-                                        <div className="songCard favSongsCoard songCardClickEvent" onClick={() => { updateCurrentPlayingSongDetails(index) }}>
+                                        <div className="songCard songCardViewUpdatedWidth favSongsCoard songCardClickEvent" onClick={() => { updateCurrentPlayingSongDetails(index) }}>
                                             {value.track ? <>
                                                 <img src={value.track.images.coverart} className="background-image-song-card" alt={value.track.title} />
                                                 <div className="background-image-song-card-two"></div>
-                                                <p>{value.track.title}</p>
+                                                <p className="song-card-name">{value.track.title}</p>
                                             </> : <></>}
                                         </div>
                                     </div>
